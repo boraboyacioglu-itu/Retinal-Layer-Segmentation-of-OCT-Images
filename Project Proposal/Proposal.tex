@@ -1,0 +1,66 @@
+\documentclass[conference]{IEEEtran}
+% \IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{
+YZV303 Deep Learning \\ 
+Project Proposal\\
+``Retinal Layer Segmentation of OCT Images''
+}
+
+\author{\IEEEauthorblockN{Öykü Eren}
+\IEEEauthorblockA{\textit{Artificial Intelligence \& Data Engineering} \\
+\textit{Istanbul Technical University}\\
+ereno20@itu.edu.tr\\ 150200326}
+\and
+\IEEEauthorblockN{Bora Boyacıoğlu}
+\IEEEauthorblockA{\textit{Artificial Intelligence \& Data Engineering} \\
+\textit{Istanbul Technical University}\\
+boyacioglu20@itu.edu.tr\\ 150200310}
+}
+
+\maketitle
+\vspace{-1cm}
+\section{Project Description}
+In this projet, we are going to build a model that segments retinal layers in macular cube images obtained with an OCT. While we will be using images on OCTA-500 dataset to train our model, we will use images acquired by from the TÜBİTAK project ``Optik Koherans (Ve Anjiografi) Taramaları Ve Derin Öğrenme Tabanlı Alzheimer Hastalığı Teşhisi'' to test our model. The details about dataset has been mentioned in the Dataset section. The project's next phase will involve performing anomaly detection on OCT data by considering the layer information used in the diagnosis of diseases. At that phase, OCTA-500 dataset will be used as train and test datasets.
+
+\section{Problem Definition}
+Optical coherence tomography (OCT) is an emerging technology to perform high-resolution cross-sectional imaging \cite{b1}. Recent studies show that OCT provides important information for the diagnosis of different diseases such as diabetic diseases and neurodegenerative diseases, as well as retinal diseases. In numerous diseases such as mentioned ones above, macular retinal layer information have been demonstrated to correlate significantly with metrics of disease severity and to offer valuable diagnostic information \cite{b2}.
+
+The problem in this study is to extract retinal layer information from OCT data, which is used in the diagnosis of various diseases.  We will work on automatically segmenting these layers of the retina for this purpose. Additionally, we'll use anomaly detection on the differentiated layer across different illness stages. In this study, deep learning techniques will be employed.
+
+\section{Dataset}
+We are going to be using OCT(A)-500 Dataset \cite{b3} from IEEE Dataport to train our model. This dataset contains OCT(A) imaging under two fields of view \textit{(FOVs)} from 500 subjects. The FOVs are $3\times3\times2$ mm and $6\times6\times2$ mm. 300 subjects has OCT/OCTA images for FOV of $6\times6\times2$, 200 subjects has OCT/OCTA images for FOV of $3\times3\times2$.
+
+The images are in BMP format and have a resolution of $400\times400\times640$ pixels for $6mm$ and $304\times304\times640$ pixels for $3mm$. Dataset also contains the corresponding ground truth images for each OCTA image. The ground truth which we will use in our study is for segmented retinal layer on OCT dataset. The dataset includeds four types of text labels (age / gender / eye / disease). We consider using images acquired by OCT while training.
+
+On segmentation phase of our study, we will use this data for the training purpose, on the anomaly detection phase, we consider to use this dataset as both of training an testing data. It is available at \href{https://ieee-dataport.org/open-access/octa-500}{https://ieee-dataport.org/open-access/octa-500}.
+
+Then, we will use the data from the TÜBİTAK project ``Optik Koherans (Ve Anjiografi) Taramaları Ve Derin Öğrenme Tabanlı Alzheimer Hastalığı Teşhisi'' \cite{b4}, obtained from Antalya Eğitim ve Araştırma Hastanesi. The data, which is in $6mm$ form, is scanned by using Topcon and Optovue devices. This data is currently in RAW form, that means we will need to apply some transformations in order to convert it to a more appropriate dataset. We will use this data to test our model on segmentation phase. 
+
+\section{Methodology}
+We will use U-Net architecture to train our model. U-Net is a convolutional neural network that was developed for biomedical image segmentation. The network is based on the fully convolutional network and its architecture was modified and extended to work with fewer training images and to yield more precise segmentations.
+
+For our purposes, we will build a 3D U-Net model to extract features on the encoder part. And also, build segmentation mask from features on the decoder part.
+
+We will select appropriate parameters such as channel depth, kernel size, number of input channels. Additionally, to get better results, different optimizer and activation methods will be applied. We consider to support our model using adding some methods. 
+
+\begin{thebibliography}{00}
+\bibitem{b1} Fujimoto, J. G., Pitris, C., Boppart, S. A., \& Brezinski, M. E. (2000). Optical coherence tomography: An emerging technology for biomedical imaging and optical biopsy. Neoplasia, 2(1–2), 9–25.
+doi:\\\href{https://doi.org/10.1038/sj.neo.7900071 }{https://doi.org/10.1038/sj.neo.7900071 }
+\bibitem{b2} Lang, A., Carass, A., Hauser, M., Sotirchos, E. S., Calabresi, P. A., Ying, H. S., \&amp; Prince, J. L. (2013). Retinal layer segmentation of macular OCT images using Boundary Classification. Biomedical Optics Express, 4(7), 1133. doi:\\\href{https://doi.org/10.1364/boe.4.001133 }{https://doi.org/10.1364/boe.4.001133}
+\bibitem{b3} Mingchao Li, Yerui Chen, Songtao Yuan, Qiang Chen, December 23, 2019, ``OCTA-500'', IEEE Dataport, doi:\\\href{https://dx.doi.org/10.1109/TMI.2020.2992244}{https://dx.doi.org/10.1109/TMI.2020.2992244}
+\bibitem{b4} \href{https://avesis.itu.edu.tr/proje/d5eec038-ccdf-4f50-b672-779bef6cdcf6/optik-koherens-tomografi-ve-anjiyografi-taramalari-ve-derin-ogrenme-tabanli-alzheimer-hastaligi-teshisi}{https://avesis.itu.edu.tr/proje/d5eec038-ccdf-4f50-b672-779bef6cdcf6/optik-koherens-tomografi-ve-anjiyografi-taramalari-ve-derin-ogrenme-tabanli-alzheimer-hastaligi-teshisi}
+\end{thebibliography}
+
+\end{document}
