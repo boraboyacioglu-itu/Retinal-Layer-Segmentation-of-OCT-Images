@@ -1,0 +1,6 @@
+We could not include the ".npz" data files, since they were too large. The folder where they are included are available in the zip file, even if the folders are currently empty. You can find them on our Drive link, which is included below.
+
+Also, the best model for TransUNet was too big as well, therefore not included. It can be reached from either the complete Drive link, or this link: https://drive.google.com/file/d/1mxR3vFZnM5AePf1XAA4iYNWp9rkdv3wE/view?usp=sharing
+
+Drive Link:
+https://drive.google.com/drive/folders/1D4S9ud9bBZiF1kItK-C-HWX042Z8UOCk?usp=sharing

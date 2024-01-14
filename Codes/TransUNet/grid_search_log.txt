@@ -1,0 +1,1 @@
+Best model with performance 0.4730621250346303 and params batch_size: 8, epoch: 50, learning_rate: 0.01, momentum: 0.9, weight_decay: 0.0001, patience: 25, inference_threshold: 0.75, transunet.img_dim: 512, transunet.in_channels: 3, transunet.out_channels: 128, transunet.head_num: 4, transunet.mlp_dim: 512, transunet.block_num: 8, transunet.patch_dim: 16, transunet.class_num: 6
